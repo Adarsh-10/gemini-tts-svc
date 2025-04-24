@@ -9,6 +9,15 @@ client = genai.Client(http_options={"api_version": "v1beta"})
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "https://your-prod-site.vercel.app", "https://web-production-7782.up.railway.app"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 async def pcm_chunks(text: str):
     prompt = f"Please say this verbatim: {text}"
     async with client.aio.live.connect(
