@@ -3,6 +3,8 @@ import os, json, asyncio
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import StreamingResponse
 from google import genai
+from fastapi.middleware.cors import CORSMiddleware
+
 
 MODEL = "models/gemini-2.0-flash-live-001"
 client = genai.Client(http_options={"api_version": "v1beta"})
